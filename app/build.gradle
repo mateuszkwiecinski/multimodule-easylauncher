@@ -1,8 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'com.starter.easylauncher'
 }
-apply plugin: "com.starter.easylauncher"
 
 android {
     compileSdkVersion 30
