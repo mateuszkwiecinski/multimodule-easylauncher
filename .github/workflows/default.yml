@@ -5,6 +5,10 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        plugin_version: [ 3.3.0, 3.4.0, 3.5.0 ]
     steps:
       - uses: actions/checkout@v2
       - name: set up JDK 1.8
@@ -16,4 +20,4 @@ jobs:
         with:
           job-id: build
       - name: Assemble
-        run: ./gradlew assembleDebug --stacktrace
+        run: ./gradlew assembleDebug -PpluginVersion=${{ matrix.plugin_version}} --stacktrace

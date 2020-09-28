@@ -14,7 +14,9 @@ buildscript {
         // in the individual module build.gradle files
 
         // Easy launcher
-        classpath "com.project.starter:easylauncher:3.5.0"
+        def easylauncherVersion = findProperty("pluginVersion")?.toString() ?: "3.5.0"
+        logger.quiet("Using easylauncher version $easylauncherVersion")
+        classpath "com.project.starter:easylauncher:$easylauncherVersion"
     }
 }
 
@@ -25,6 +27,6 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
+tasks.register("clean", Delete) {
     delete rootProject.buildDir
 }
